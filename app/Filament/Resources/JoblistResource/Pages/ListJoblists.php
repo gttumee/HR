@@ -26,8 +26,6 @@ class ListJoblists extends ListRecords
             'Бүгд' => Tab::make('Бүгд')->badge($this->getModel()::count()),
             'Үндсэн ажилтан' => Tab::make('Үндсэн ажилтан')->badge($this->getModel()::count()),
             'Цагын ажилтан' => Tab::make('Цагын ажилтан')->badge($this->getModel()::count()),
-            'Түр ажилтан' => Tab::make('Түр ажилтан')->badge($this->getModel()::count()),
-            'Бусад' => Tab::make('Бусад')->badge($this->getModel()::count()),
         
         ];
         return $tabs;

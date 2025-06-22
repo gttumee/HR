@@ -29,7 +29,7 @@ class AppPanelProvider extends PanelProvider
             ->topNavigation()
             ->brandName('Шинэ ажилтан бүртгэл')
             ->maxContentWidth(MaxWidth::Full)
-            ->path('app')
+            ->path('')
             // ->login()
             ->colors([
                 'primary' => Color::Gray,

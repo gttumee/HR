@@ -59,34 +59,27 @@ class JoblistResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                Split::make([
-                    Stack::make([
-                        ImageColumn::make('avatar')
-                        ->width(200),
-                        TextColumn::make('name')
-                        ->searchable()
+        ->columns([
+            Split::make([
+                Stack::make([
+                    TextColumn::make('name')
+                        ->icon('heroicon-c-user')
                         ->weight(FontWeight::Bold),
-                        TextColumn::make('type')
-                        ->searchable()
-                        ->badge()
-                        ->color('info')
-                    ]),
-                    Stack::make([
-                        TextColumn::make('salary')
-                            ->icon('heroicon-o-document-currency-yen'),
-                        TextColumn::make('language_level')
-                            ->icon('heroicon-m-envelope'),
-                        TextColumn::make('phone')
-                            ->icon('heroicon-m-phone'),
-                    ]),
-                    Stack::make([
-                        TextColumn::make('number')
-                            ->icon('heroicon-s-user-group'),
-                        TextColumn::make('company_name')
-                            ->icon('heroicon-c-building-office'),
+                     Stack::make([
+                     TextColumn::make('type')
+                        ->icon('heroicon-o-identification'),
                     ]),
                 ]),
+                Stack::make([
+                    TextColumn::make('salary')
+                         ->icon('heroicon-s-banknotes')
+                        ->numeric(decimalPlaces: 0),
+                     TextColumn::make('created_at')
+                     ->date()
+                        ->icon('heroicon-s-calendar'), 
+                    ]),
+            ]),
+   
        
             ])
          
@@ -112,19 +105,17 @@ class JoblistResource extends Resource
                         ->schema([
                             Checkbox::make('ok')
                             ->required()
-                            ->label('<div style="white-space: pre-line;">' .
-                            'Хувийн мэдээлэл: Хувийн мэдээлэл гэдэг нь тухайн хувь хүнийг танихад ашиглагддаг мэдээлэл бөгөөд нэр, төрсөн огноо, хаяг, утас, эрүүл мэндийн мэдээлэл гэх мэт орно.<br><br>' .
-                            'Мэдээлэл цуглуулах: Хэрэглэгчид бүртгэл, үйлчилгээ авах үед хувийн мэдээллийг асууж, түншүүдээс мэдээлэл цуглуулж болно.<br><br>' .
-                            'Ашиглах зорилго: Бид хувийн мэдээллийг үйлчилгээний бүртгэл, шинэчлэлт, төлбөрийн хэрэгсэл болон хэрэглэгчийн асуултад хариу өгөх зорилгоор ашиглана.<br><br>' .
-                            'Мэдээллийг гуравдагч талд шилжүүлэх: Хэрэглэгчийн зөвшөөрөлгүйгээр гуравдагч талд мэдээллийг шилжүүлэхгүй, зөвхөн хууль ёсны шаардлагаар шилжүүлнэ.<br><br>' .
-                            'Мэдээллийг засварлах болон устгах: Хэрэглэгчид өөрийн мэдээллийг засварлах, устгах хүсэлт гаргаж болно.<br><br>' .
-                            'Холбоо барих: Мэдээллийн талаар асуулт байвал доорх хаягаар холбоо барина уу:<br>' .
-                            'Имэйл: privacy@kobesoft.co.jp</div>')
+                            ->label(
+                            'Хувийн мэдээлэл: Хувийн мэдээлэл гэдэг нь тухайн хувь хүнийг танихад ашиглагддаг мэдээлэл бөгөөд нэр, төрсөн огноо, хаяг, утас, эрүүл мэндийн мэдээлэл гэх мэт орно.' .
+                            'Мэдээлэл цуглуулах: Хэрэглэгчид бүртгэл, үйлчилгээ авах үед хувийн мэдээллийг асууж, түншүүдээс мэдээлэл цуглуулж болно.' .
+                            'Ашиглах зорилго: Бид хувийн мэдээллийг үйлчилгээний бүртгэл, шинэчлэлт, төлбөрийн хэрэгсэл болон хэрэглэгчийн асуултад хариу өгөх зорилгоор ашиглана.' .
+                            'Мэдээллийг гуравдагч талд шилжүүлэх: Хэрэглэгчийн зөвшөөрөлгүйгээр гуравдагч талд мэдээллийг шилжүүлэхгүй, зөвхөн хууль ёсны шаардлагаар шилжүүлнэ.' .
+                            'Мэдээллийг засварлах болон устгах: Хэрэглэгчид өөрийн мэдээллийг засварлах, устгах хүсэлт гаргаж болно')
                             ->columnSpanFull()
                             ->inline(false)
                             ->accepted()
                             ->validationMessages([
-                                'accepted' => 'Зөвшөөрөл зөлөнө үү.', // バリデーションメッセージ
+                                'accepted' => 'Зөвшөөрөл зөлөнө үү.',
                             ])
                         ])
                       
